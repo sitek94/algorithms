@@ -1,4 +1,9 @@
-<h2><a href="https://leetcode.com/problems/rotate-array">Rotate Array</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given an integer array <code>nums</code>, rotate the array to the right by <code>k</code> steps, where <code>k</code> is non-negative.</p>
+# [Rotate Array](https://leetcode.com/problems/rotate-array)
+  
+<img src='https://img.shields.io/badge/Difficulty-Medium-yellow' alt='Difficulty: Medium' />
+<hr />
+
+<p>Given an integer array <code>nums</code>, rotate the array to the right by <code>k</code> steps, where <code>k</code> is non-negative.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
@@ -38,3 +43,4 @@ rotate 2 steps to the right: [3,99,-1,-100]
 	<li>Try to come up with as many solutions as you can. There are at least <strong>three</strong> different ways to solve this problem.</li>
 	<li>Could you do it in-place with <code>O(1)</code> extra space?</li>
 </ul>
+
