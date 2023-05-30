@@ -73,10 +73,12 @@ async function fetchAllSubmissions() {
   while (has_next) {
     const response = await fetchSubmissions({offset})
 
-    submissions.push(...response.submissions_dump)
+    submissions.push(...response?.submissions_dump)
     has_next = response.has_next
     offset += 20
   }
+
+  console.log(chalk.green(`✅ Fetched all submissions!\n\n`))
 
   return submissions
 }
@@ -110,10 +112,14 @@ async function fetchSubmissions({offset = 0}) {
   const data = await response.json()
 
   if (response.ok) {
-    console.log(chalk.green`✅ Fetched submissions: ${data.length}`)
+    console.log(
+      chalk.green(`✅ Fetched submissions: ${data.submissions_dump.length}`),
+    )
   } else {
-    console.log(chalk.red`🚨 Failed to fetch submissions! (offset: ${offset})`)
+    console.log(chalk.red`🚨 Failed to fetch submissions!`)
     console.log(data)
+
+    return {submissions_dump: [], has_next: false}
   }
 
   return data
@@ -122,7 +128,6 @@ async function fetchSubmissions({offset = 0}) {
 const COUNTS = {}
 
 /**
- *
  * @param {Submission} submission
  */
 function getSubmissionFileName(submission) {
