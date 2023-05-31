@@ -1,6 +1,7 @@
 {
   "type": "module",
   "scripts": {
+    "save": "node ./scripts/get.js",
     "sync": "node ./scripts/sync.js"
   },
   "devDependencies": {
