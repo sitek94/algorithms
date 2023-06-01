@@ -1,5 +1,6 @@
 import fs from 'fs'
-import {PROBLEMS_DIRECTORY} from './utils'
+import { PROBLEMS_DIRECTORY } from './utils.js'
+import { saveProblem } from './save-problem.js'
 
 export async function syncProblemDescriptions() {
   const allProblemDirectories = fs.readdirSync(PROBLEMS_DIRECTORY)
