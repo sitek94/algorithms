@@ -1,24 +1,21 @@
 def binary_search(numbers, target):
-    if not numbers:
-        return None
-
     left = 0
     right = len(numbers) - 1
 
-    while left != right:
-        index = (left + right) // 2
+    while left <= right:
+        index = left + (right - left) // 2
         middle = numbers[index]
 
         if middle == target:
             return index
 
         elif middle > target:
-            right = middle - 1
+            right = index - 1
 
         else:
-            left = middle
+            left = index + 1
 
-    return left if numbers[left] == target else None
+    return None
 
 
 def test_binary_search():
