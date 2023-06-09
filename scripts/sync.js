@@ -3,8 +3,7 @@ import 'dotenv/config'
 import {syncProblemDescriptions} from './sync-descriptions.js'
 import {syncSubmissions} from './sync-submissions.js'
 import {verifySession} from './verify-session.js'
-
-const PROBLEMS_DIRECTORY = './submissions'
+import {PROBLEMS_DIRECTORY} from './utils.js'
 
 await verifySession()
 await syncSubmissions(PROBLEMS_DIRECTORY)
