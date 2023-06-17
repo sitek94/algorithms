@@ -1,5 +1,5 @@
 {
-  "name": "leetcode",
+  "name": "algorithms",
   "type": "module",
   "scripts": {
     "save": "node ./scripts/get.js",
