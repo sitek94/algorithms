@@ -62,6 +62,9 @@ assert is_palindrome_permutation("Not a palindrome permutation") == False
 TODO: GPT Analysis
 
 1. You've chosen to build the code around an interesting observation that "If more than one letter is odd, it doesn't have a pair". Could you please explain your thought process behind this?
+
+Palindrome is a word that is the same forwards and backwards. In other words it's first half is a mirror of second half. Therefore there can be only one odd letter (or none). If there is such letter it would be in the middle of palindrome.
+
 2. In the part of the code where you normalize the string by removing special characters and converting it to lower case -- is there a specific reason you chose to do so?
 3. You've used a dictionary (occurrences) to store the count of each character in the string. Could you explain why you chose a dictionary? Was there any specific benefits that came with it?
 4. In the part where you check for odd counts, there are conditional branches. Could you explain their purpose and how they help ascertain whether the string can be a palindrome or not?
