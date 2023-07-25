@@ -3,20 +3,22 @@ class Solution(object):
         """
         :type x: int
         :rtype: int
-        """   
-        start = 0
+        """
+        if x == 0:
+            return 0
+
+        start = 1
         end = x
 
-        while True:
-            mid = float((start + end) / 2)
-            product = mid * mid
+        while start <= end:
+            mid = (start + end) // 2
 
-            if int(product) == x:
-                return int(mid)
+            if mid * mid <= x < (mid + 1) * (mid + 1):
+                return mid
 
-            if product > x:
-                end = mid
+            elif mid * mid > x:
+                end = mid - 1
 
-            if product < x:
-                start = mid
+            else:
+                start = mid + 1
     
