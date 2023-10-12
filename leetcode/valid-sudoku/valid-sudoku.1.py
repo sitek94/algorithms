@@ -51,4 +51,3 @@ class Solution(object):
 
         # Checked all cells, board must be valid
         return True
-
