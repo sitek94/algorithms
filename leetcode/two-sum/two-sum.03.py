@@ -1,4 +1,4 @@
-# Different solution 2
+# Different solution 
 class Solution(object):
     def twoSum(self, nums, target):
         complements = {}
