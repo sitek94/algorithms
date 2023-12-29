@@ -4,7 +4,7 @@ import re
 # Task:
 Given a string, write a function to check if it is a permutation of a palindrome.
 
-is_palidndrome_permutation(string)
+is_palindrome_permutation(string)
 
 # Things to consider / ask interviewer
     - Examples when string is a permutation of palindrome
@@ -19,7 +19,7 @@ the string can't be a palindrome.
 
     1. Remove whitespace and make it lowercase
     2. Count occurrence of each letter
-    3. Check if more than one occurence is odd - if yes it can't be a palindrome
+    3. Check if more than one occurrence is odd - if yes it can't be a palindrome
 """
 
 
@@ -97,7 +97,7 @@ Analysis with AI
 
 5. Related to space and time complexity:
    AI: (Space) You've mentioned the space complexity to be O(n) because of the input string and the dictionary. Are there any ways you can think of for optimizing the space complexity or is this the most optimal in your opinion?
-   Me: Actually I can optimize it. I don't need to create normalized string. I can add char to occurences only if it's alpha(), and then make it lowercase. This way space complexity will be O(1), because there is finite number of alphabetical characters. See optimized version : is_palindrome_permutation2
+   Me: Actually I can optimize it. I don't need to create normalized string. I can add char to occurrences only if it's alpha(), and then make it lowercase. This way space complexity will be O(1), because there is finite number of alphabetical characters. See optimized version : is_palindrome_permutation2
 
    AI: (Time) You've observed the time complexity.
    Me: Yeah, I don't think there is a way to make it faster.
