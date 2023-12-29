@@ -1,14 +1,11 @@
 {
   "name": "algorithms",
+  "module": "index.ts",
   "type": "module",
-  "scripts": {
-    "save": "node ./scripts/get.js",
-    "sync": "node ./scripts/sync.js"
-  },
   "devDependencies": {
-    "@types/node": "^20.2.5",
-    "chalk": "^5.2.0",
-    "dotenv": "^16.0.3",
-    "leetcode-query": "^0.2.7"
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }
