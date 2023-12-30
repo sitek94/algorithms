@@ -1,3 +1,5 @@
+import {setupTests} from '../utils/test'
+
 /**
  * Determines whether two given strings are one (or zero) edits away from each other. An edit is defined
  * as an insertion, deletion, or replacement of a single character.
@@ -13,7 +15,7 @@
  *
  * Space: O(1), constant space due to a fixed number of variables used, which does not increase with input size.
  */
-const oneAway = (input: string, target: string) => {
+const initialSolution = (input: string, target: string) => {
   const shouldInsert = input.length < target.length
   const shouldRemove = input.length > target.length
 
@@ -50,7 +52,65 @@ const oneAway = (input: string, target: string) => {
   }
 }
 
-console.assert(oneAway('pale', 'ple') === true, `insert`)
-console.assert(oneAway('pales', 'pale') === true, `remove`)
-console.assert(oneAway('pale', 'bale') === true, `replace`)
-console.assert(oneAway('pale', 'bake') === false, `2 edits`)
+const moreReadable = (first: string, second: string) => {
+  const isOneEditAwayByReplace = (s1: string, s2: string) => {
+    let isDifferent = false
+
+    for (let i = 0; i < s1.length; i++) {
+      if (s1[i] !== s2[i]) {
+        if (isDifferent) {
+          return false
+        }
+        isDifferent = true
+      }
+    }
+
+    return true
+  }
+
+  const isOneEditAwayByInsert = (s1: string, s2: string) => {
+    let index1 = 0
+    let index2 = 0
+
+    while (index1 < s1.length && index2 < s2.length) {
+      if (s1[index1] !== s2[index2]) {
+        // It means we've already incremented the index, and since no more edits are allowed
+        // we can return false
+        if (index1 !== index2) {
+          return false
+        }
+
+        index2++
+      } else {
+        index1++
+        index2++
+      }
+    }
+
+    return true
+  }
+
+  // Replace
+  if (first.length === second.length) {
+    return isOneEditAwayByReplace(first, second)
+  }
+
+  // Insert
+  if (first.length + 1 === second.length) {
+    return isOneEditAwayByInsert(first, second)
+  }
+
+  // Remove (same as insert, but with different order of arguments)
+  if (first.length - 1 === second.length) {
+    return isOneEditAwayByInsert(second, first)
+  }
+
+  return false
+}
+
+const test = setupTests([initialSolution, moreReadable])
+
+test(['pale', 'ple'], true)
+test(['pales', 'pale'], true)
+test(['pale', 'bale'], true)
+test(['pale', 'bake'], false)
