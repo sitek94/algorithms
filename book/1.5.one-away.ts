@@ -54,14 +54,14 @@ const initialSolution = (input: string, target: string) => {
 
 const moreReadable = (first: string, second: string) => {
   const isOneEditAwayByReplace = (s1: string, s2: string) => {
-    let isDifferent = false
+    let foundDifference = false
 
     for (let i = 0; i < s1.length; i++) {
       if (s1[i] !== s2[i]) {
-        if (isDifferent) {
+        if (foundDifference) {
           return false
         }
-        isDifferent = true
+        foundDifference = true
       }
     }
 
@@ -108,7 +108,43 @@ const moreReadable = (first: string, second: string) => {
   return false
 }
 
-const test = setupTests([initialSolution, moreReadable])
+const moreCompact = (first: string, second: string) => {
+  // Definitely requires more than one edit
+  if (Math.abs(first.length - second.length) > 1) {
+    return false
+  }
+
+  const [short, long] =
+    first.length > second.length ? [second, first] : [first, second]
+  let shortIndex = 0
+  let longIndex = 0
+  let foundDifference = false
+
+  while (shortIndex < short.length && longIndex < long.length) {
+    if (short[shortIndex] !== long[longIndex]) {
+      if (foundDifference) {
+        return false
+      }
+
+      foundDifference = true
+
+      if (short.length === long.length) {
+        shortIndex++
+      }
+    } else {
+      shortIndex++
+    }
+
+    longIndex++
+  }
+
+  return true
+}
+
+const test = setupTests([
+  // initialSolution, moreReadable,
+  moreCompact,
+])
 
 test(['pale', 'ple'], true)
 test(['pales', 'pale'], true)
