@@ -50,7 +50,7 @@ const oneAway = (input: string, target: string) => {
   }
 }
 
-console.assert(oneAway("pale", "ple") === true, `insert`)
-console.assert(oneAway("pales", "pale") === true, `remove`)
-console.assert(oneAway("pale", "bale") === true, `replace`)
-console.assert(oneAway("pale", "bake") === false, `2 edits`)
+console.assert(oneAway('pale', 'ple') === true, `insert`)
+console.assert(oneAway('pales', 'pale') === true, `remove`)
+console.assert(oneAway('pale', 'bale') === true, `replace`)
+console.assert(oneAway('pale', 'bake') === false, `2 edits`)

@@ -9,20 +9,20 @@
  */
 const compressString = (input: string): string => {
   // Edge cases
-  if (input === "" || input.length === 1) {
+  if (input === '' || input.length === 1) {
     return input
   }
 
-  let output = ""
+  let output = [] as Array<number | string>
   let count = 1
-  let current = ""
+  let current = ''
 
   for (let char of input) {
     if (char === current) {
       count++
     } else {
-      if (current !== "") {
-        output += current + String(count)
+      if (current !== '') {
+        output.push(current, count)
       }
 
       current = char
@@ -30,16 +30,17 @@ const compressString = (input: string): string => {
     }
   }
 
-  output += current + String(count)
+  output.push(current, count)
 
-  if (output.length > input.length) {
+  const isNotCompressed = output.length > input.length
+  if (isNotCompressed) {
     return input
   }
 
-  return output
+  return output.join('')
 }
 
-console.assert(compressString("aabcccccaaa") === "a2b1c5a3")
-console.assert(compressString("abcdefg") === "abcdefg")
-console.assert(compressString("") === "")
-console.assert(compressString("a") === "a")
+console.assert(compressString('aabcccccaaa') === 'a2b1c5a3')
+console.assert(compressString('abcdefg') === 'abcdefg')
+console.assert(compressString('') === '')
+console.assert(compressString('a') === 'a')
