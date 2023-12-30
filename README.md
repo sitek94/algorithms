@@ -1,16 +1,15 @@
-# LeetCode
+# Algorithms
 
-## [Current problems](https://leetcode.com/studyplan/top-interview-150/)
+My solutions to various algorithms problems and challenges.
+
+## LeetCode
+
+- [Current problems](https://leetcode.com/studyplan/top-interview-150/)
 
 ## Scripts
 
+Use Bun to run TypeScript files, e.g.
+
 ```shell
-# Sync all submissions
-pnpm sync
+bun book/1.5.one-away.ts
 ```
-
-## Todo
-
-- [ ] sync only recent submissions
-- [x] save problem by slug, link or title
-- [x] sync all submissions
