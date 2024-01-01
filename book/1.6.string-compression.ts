@@ -1,3 +1,5 @@
+import {benchmark} from '@/utils/benchmark'
+
 /**
  * Perform basic string compression using the counts of repeated characters.
  *
@@ -6,13 +8,11 @@
  * @complexity
  * Time: O(n), we need to go through each char of input string
  * Space: O(n), in worst case scenario where we can't compress the string
+ *
+ * @note I assumed wrongly that I need to use array for performance reasons,
+ * but it turns out string concatenation in JS is already optimized.
  */
-const compressString = (input: string): string => {
-  // Edge cases
-  if (input === '' || input.length === 1) {
-    return input
-  }
-
+function firstApproach(input: string): string {
   let output = [] as Array<number | string>
   let count = 1
   let current = ''
@@ -40,7 +40,31 @@ const compressString = (input: string): string => {
   return output.join('')
 }
 
-console.assert(compressString('aabcccccaaa') === 'a2b1c5a3')
-console.assert(compressString('abcdefg') === 'abcdefg')
-console.assert(compressString('') === '')
-console.assert(compressString('a') === 'a')
+function fasterApproach(input: string): string {
+  let compressed = ''
+  let count = 0
+
+  for (let i = 0; i < input.length; i++) {
+    count++
+
+    const isLastChar = i === input.length - 1
+    const isNotSameChar = input[i] !== input[i + 1]
+
+    if (isLastChar || isNotSameChar) {
+      // If at any point the compressed string is longer than the input string
+      // we can return the input string immediately
+      const isNotCompressed = compressed.length > input.length
+      if (isNotCompressed) {
+        return input
+      }
+
+      compressed += input[i] + count
+      count = 0
+    }
+  }
+
+  return compressed
+}
+
+benchmark(firstApproach, 'aabcccccaaa')
+benchmark(fasterApproach, 'aabcccccaaa')

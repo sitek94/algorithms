@@ -2,5 +2,5 @@
 
 ## Arrays and Strings
 
-- In JavaScript, string concatenation can be costly because a new string is created each time. A more efficient approach
-  is to push values into an array and then join them when finished.
+- In JavaScript it's not necessary to implement StringBuilder, because both `concat()` and `string += string2` are
+  already optimized using rope data structure, which makes time complexity O(log n) in most cases.
