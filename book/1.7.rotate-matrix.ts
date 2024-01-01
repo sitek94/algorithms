@@ -24,18 +24,10 @@ const rotateMatrix = (input: number[][]) => {
 
 type P = [number, number]
 
-
-
 const serialize = (input: number[][]) =>
   input.map(row => row.join(' ')).join('\n')
 
-const test = setupTests([
-  (input: number[][]) => serialize(rotateMatrix(input)),
-])
-
-/**
- * Rotate right 90 degrees clockwise in place
- */
+const test = setupTests([(input: number[][]) => serialize(rotateMatrix(input))])
 
 const input = [
   [1, 2, 3, 4, 5],
