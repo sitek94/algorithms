@@ -23,6 +23,11 @@ const compressString = (input: string): string => {
     } else {
       if (current !== '') {
         output.push(current, count)
+
+        const isNotCompressed = output.length > input.length
+        if (isNotCompressed) {
+          return input
+        }
       }
 
       current = char
@@ -31,11 +36,6 @@ const compressString = (input: string): string => {
   }
 
   output.push(current, count)
-
-  const isNotCompressed = output.length > input.length
-  if (isNotCompressed) {
-    return input
-  }
 
   return output.join('')
 }
