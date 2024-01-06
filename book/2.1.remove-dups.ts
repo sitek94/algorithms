@@ -14,16 +14,16 @@ const setup = () => createLinkedList([1, 2, 3, 4, 5, 6, 5, 7, 8, 9, 0, 10, 11])
   head.print()
 
   const removeDuplicates = (head: LinkedListNode<number>) => {
-    const occurrences: Record<number, boolean> = {}
+    const occurrences = new Set<number>()
 
     let current: LinkedListNode<number> = head
     let next = head.next
 
     while (next !== undefined) {
-      if (occurrences[next.value]) {
+      if (occurrences.has(next.value)) {
         current.next = next.next
       } else {
-        occurrences[next.value] = true
+        occurrences.add(next.value)
         current = next
       }
       next = next.next
@@ -64,6 +64,37 @@ console.log('\n------------------------------------\n')
 
       head = head.next
     }
+  }
+
+  removeDuplicates(head)
+
+  head.print()
+}
+
+/**
+ * Slightly cleaner solution without using additional variable for `next`
+ */
+{
+  const {head} = setup()
+
+  const removeDuplicates = (head?: LinkedListNode<number>) => {
+    let current = head
+
+    while (current) {
+      let runner: LinkedListNode<number> = current
+
+      while (runner.next) {
+        if (current.value === runner.next.value) {
+          runner.next = runner.next.next
+        }
+
+        runner = runner.next!
+      }
+
+      current = current.next
+    }
+
+    return true
   }
 
   removeDuplicates(head)
