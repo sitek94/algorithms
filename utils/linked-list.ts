@@ -4,15 +4,9 @@ export class LinkedList<T> {
   constructor(value: T) {
     this.head = new LinkedListNode(value)
   }
-}
-
-export class LinkedListNode<T> {
-  public next?: LinkedListNode<T>
-
-  constructor(public value: T) {}
 
   appendToTail(value: T) {
-    let lastNode = this as LinkedListNode<T>
+    let lastNode = this.head
 
     while (lastNode.next) {
       lastNode = lastNode.next
@@ -26,11 +20,11 @@ export class LinkedListNode<T> {
 
   print() {
     const values: T[] = []
-    let node: LinkedListNode<T> | undefined = this
+    let current: typeof this.head | undefined = this.head
 
-    while (node?.value !== undefined) {
-      values.push(node.value)
-      node = node.next
+    while (current?.value !== undefined) {
+      values.push(current.value)
+      current = current.next
     }
 
     console.log(values.join(' -> '))
@@ -38,11 +32,17 @@ export class LinkedListNode<T> {
   }
 }
 
+export class LinkedListNode<T> {
+  public next?: LinkedListNode<T>
+
+  constructor(public value: T) {}
+}
+
 export const createLinkedList = <T>(values: T[]) => {
   const [head, ...tail] = values
   const linkedList = new LinkedList(head)
 
-  tail.forEach(value => linkedList.head.appendToTail(value))
+  tail.forEach(value => linkedList.appendToTail(value))
 
   return linkedList
 }
