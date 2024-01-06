@@ -9,9 +9,9 @@ const setup = () => createLinkedList([1, 2, 3, 4, 5, 6, 5, 7, 8, 9, 0, 10, 11])
  * Space: O(n)
  */
 {
-  const {head} = setup()
+  const linkedList = setup()
 
-  head.print()
+  linkedList.print()
 
   const removeDuplicates = (head: LinkedListNode<number>) => {
     const occurrences = new Set<number>()
@@ -30,9 +30,9 @@ const setup = () => createLinkedList([1, 2, 3, 4, 5, 6, 5, 7, 8, 9, 0, 10, 11])
     }
   }
 
-  removeDuplicates(head)
+  removeDuplicates(linkedList.head)
 
-  head.print()
+  linkedList.print()
 }
 
 console.log('\n------------------------------------\n')
@@ -44,7 +44,9 @@ console.log('\n------------------------------------\n')
  * Space: O(1)
  */
 {
-  const {head} = setup()
+  const linkedList = setup()
+
+  linkedList.print()
 
   const removeDuplicates = (start?: LinkedListNode<number>) => {
     let head = start
@@ -66,16 +68,18 @@ console.log('\n------------------------------------\n')
     }
   }
 
-  removeDuplicates(head)
+  removeDuplicates(linkedList.head)
 
-  head.print()
+  linkedList.print()
 }
 
 /**
  * Slightly cleaner solution without using additional variable for `next`
  */
 {
-  const {head} = setup()
+  const linkedList = setup()
+
+  linkedList.print()
 
   const removeDuplicates = (head?: LinkedListNode<number>) => {
     let current = head
@@ -97,7 +101,7 @@ console.log('\n------------------------------------\n')
     return true
   }
 
-  removeDuplicates(head)
+  removeDuplicates(linkedList.head)
 
-  head.print()
+  linkedList.print()
 }
