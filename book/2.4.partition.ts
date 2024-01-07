@@ -3,13 +3,56 @@ import {
   createLinkedList,
   printLinkedList,
 } from '@/utils/linked-list'
-import {inspect} from 'util'
-// import {inspect} from 'bun'
 
 const setup = () => createLinkedList([3, 5, 8, 5, 10, 2, 1])
 
 /**
+ * Partition a linked list around a value N, such that all nodes less than x come before all nodes greater than or equal to N.
+ *
  * Assumptions
+ * - Return a linked list
+ * - Order of nodes doesn't matter
+ * - Partition value will always be in the linked list
+ *
+ * Solution with Head and Tail pointers (see Excalidraw file with visualization)
+ *
+ * Time: O(n) - we have to visit every node
+ * Space: O(1) - we're not creating any new data structures
+ */
+{
+  const linkedList = setup()
+  type Node = typeof linkedList.head
+
+  const partition = (n: number, node: Node) => {
+    let head = node
+    let tail = node
+
+    while (node) {
+      let next = node.next
+
+      if (node.value < n) {
+        node.next = head
+        head = node
+      } else {
+        tail.next = node
+        tail = node
+      }
+      node = next!
+    }
+
+    // Close
+    tail.next = undefined
+
+    return head
+  }
+
+  const head = partition(5, linkedList.head)
+
+  printLinkedList(head)
+}
+
+/**
+ * Initial approach
  * - Return two linked lists
  */
 {
@@ -57,40 +100,4 @@ const setup = () => createLinkedList([3, 5, 8, 5, 10, 2, 1])
 
   left && printLinkedList(left)
   right && printLinkedList(right)
-}
-
-/**
- * Approach 2, same assumptions, simpler implementation
- */
-{
-  const linkedList = setup()
-  type Node = typeof linkedList.head
-
-  const partition = (n: number, node: Node) => {
-    let head = node
-    let tail = node
-    let current = node
-
-    while (current) {
-      if (current.value < n) {
-        let temp = current.next
-        current.next = head
-        head = current
-        current = temp!
-      } else {
-        tail.next = current
-        tail = current
-        current = current.next!
-      }
-    }
-
-    // Close 
-    tail.next = undefined
-
-    return head
-  }
-
-  const head = partition(5, linkedList.head)
-
-  printLinkedList(head)
 }
