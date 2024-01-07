@@ -1,4 +1,4 @@
-import {LinkedList, LinkedListNode, createLinkedList} from '@/utils/linked-list'
+import { LinkedList } from '@/utils/linked-list'
 
 const linkedList = new LinkedList(1)
 

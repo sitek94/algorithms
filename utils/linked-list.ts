@@ -19,16 +19,7 @@ export class LinkedList<T> {
   }
 
   print() {
-    const values: T[] = []
-    let current: typeof this.head | undefined = this.head
-
-    while (current?.value !== undefined) {
-      values.push(current.value)
-      current = current.next
-    }
-
-    console.log(values.join(' -> '))
-    console.log()
+    printLinkedList(this.head)
   }
 }
 
@@ -45,4 +36,17 @@ export const createLinkedList = <T>(values: T[]) => {
   tail.forEach(value => linkedList.appendToTail(value))
 
   return linkedList
+}
+
+export function printLinkedList<T>(head: LinkedListNode<T>) {
+  const values: T[] = []
+  let current: typeof head | undefined = head
+
+  while (current?.value !== undefined) {
+    values.push(current.value)
+    current = current.next
+  }
+
+  console.log(values.join(' -> '))
+  console.log()
 }
