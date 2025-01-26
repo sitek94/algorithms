@@ -1,4 +1,4 @@
-export class LinkedList<T> {
+export class LinkedList<T = number> {
   public head: LinkedListNode<T>
 
   constructor(value: T) {
@@ -23,7 +23,7 @@ export class LinkedList<T> {
   }
 }
 
-export class LinkedListNode<T> {
+export class LinkedListNode<T = number> {
   public next?: LinkedListNode<T>
 
   constructor(public value: T) {}
